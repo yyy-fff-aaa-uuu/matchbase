@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Match Base</title>
+<meta property="og:title" content="Match Base">
+<meta property="og:description" content="仲間と飯を食って、火を囲んで、朝は海に入る。そのための家。">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout: one long vertical scroll, full-bleed photo bands alternating with cream text bands, wavy edges between them. Sun-faded surf-town poster feel. */
+:root{
+  --sand:#FFF6E6;      /* page ground */
+  --cream:#FFFDF8;     /* cards */
+  --ink:#2B2A33;       /* body text */
+  --ink-soft:#5C5964;
+  --sky:#3FB8E6;       /* California sky */
+  --sunset:#FF7A45;    /* main accent */
+  --coral:#FF5C7A;
+  --lemon:#FFD24D;
+  --palm:#4CBF7A;
+  --wood:#E4A24A;
+  --font-display:"Fredoka","Zen Maru Gothic",system-ui,sans-serif;
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",system-ui,sans-serif;
+}
+/* 常に明るい色で表示する（ダークモードでも切り替えない） */
+:root{color-scheme:light}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.9}
+img{max-width:100%;display:block}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:72vh;max-width:100%;display:grid;align-items:end;isolation:isolate;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;z-index:-2}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(63,184,230,.25) 0%,rgba(0,0,0,0) 35%,rgba(40,20,10,.55) 100%)}
+.hero-inner{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:40px 72px;max-width:1040px;width:100%;margin:0 auto;color:#fff}
+.eyebrow{display:inline-block;font-family:var(--font-display);font-weight:600;letter-spacing:.14em;font-size:.8rem;text-transform:uppercase;background:var(--lemon);color:#3A2A00;padding:4px 12px;border-radius:999px;transform:rotate(-2deg);margin-bottom:14px}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,11vw,6.5rem);line-height:.95;letter-spacing:.02em;text-shadow:0 4px 0 rgba(0,0,0,.18)}
+.hero h1 span{display:block}
+.hero p{margin-top:14px;font-size:clamp(1rem,2.6vw,1.25rem);font-weight:500;max-width:30em;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+
+/* wavy edge */
+.wave-wrap{overflow:hidden;margin-top:-45px;position:relative;z-index:1;height:46px}
+.wave{display:block;width:100%;height:46px}
+
+/* ---------- sections ---------- */
+.band{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:56px}
+.wrap{max-width:720px;margin:0 auto}
+.wide{max-width:1040px;margin:0 auto}
+.label{font-family:var(--font-display);font-weight:600;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sunset);margin-bottom:10px}
+h2{font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;line-height:1.35;margin-bottom:22px}
+h2 mark{background:linear-gradient(transparent 55%,var(--lemon) 55%);color:inherit;padding:0 .1em}
+.copy p + p{margin-top:1.1em}
+.copy{max-width:40em}
+
+/* photo + text pairs */
+.pair{display:grid;gap:28px;align-items:center}
+@media(min-width:760px){
+  .pair{grid-template-columns:1fr 1fr;gap:48px}
+  .pair.flip .photo{order:2}
+}
+.photo{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px -20px rgba(60,30,0,.45);transform:rotate(-1.2deg);background:var(--cream)}
+.pair.flip .photo{transform:rotate(1.2deg)}
+.photo img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
+.photo.tall img{aspect-ratio:3/4}
+.sticker{position:absolute;right:14px;bottom:14px;font-family:var(--font-display);font-weight:700;font-size:.85rem;letter-spacing:.06em;padding:6px 12px;border-radius:999px;color:#fff;transform:rotate(3deg);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.sticker.sun{background:var(--sunset)}
+.sticker.sea{background:var(--sky)}
+.sticker.leaf{background:var(--palm)}
+
+/* highlights */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--cream);border:2px solid var(--wood);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.95rem;color:var(--ink)}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--sunset)}
+.chip:nth-child(2) i{background:var(--sky)}
+.chip:nth-child(3) i{background:var(--palm)}
+.chip:nth-child(4) i{background:var(--coral)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:760px){.gallery{grid-template-columns:repeat(4,1fr);gap:16px}}
+.gallery figure{margin:0;border-radius:16px;overflow:hidden;background:var(--cream)}
+.gallery img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gallery figure:nth-child(1) img{aspect-ratio:1/1}
+@media(min-width:760px){.gallery figure:nth-child(1) img{aspect-ratio:auto;height:100%}}
+.gallery figure:nth-child(4){grid-column:span 2}
+.gallery figure:nth-child(4) img{aspect-ratio:2/1}
+
+/* neighborhood */
+.spots{display:grid;gap:16px;margin-top:6px}
+@media(min-width:640px){.spots{grid-template-columns:1fr 1fr}}
+.spot{background:var(--cream);border-radius:22px;padding:26px 24px;position:relative;overflow:hidden;min-width:0}
+.spot .tag{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:999px;margin-bottom:12px;transform:rotate(-2deg)}
+.spot h3{font-size:1.25rem;font-weight:700;line-height:1.4;margin-bottom:8px}
+.spot p{color:var(--ink-soft);font-size:.98rem}
+.spot.sushi .tag{background:var(--sky)}
+.spot.snack .tag{background:var(--coral)}
+.spot.snack{background:linear-gradient(160deg,var(--cream),var(--sand));border:3px dashed var(--coral)}
+.spot .q{position:absolute;right:14px;top:8px;font-family:var(--font-display);font-weight:700;font-size:5rem;line-height:1;color:var(--coral);opacity:.15;pointer-events:none}
+.cash{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cash .bill{flex:none;font-family:var(--font-display);font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:#3A2A00;background:var(--lemon);border:3px solid var(--wood);border-radius:10px;padding:8px 16px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--wood)}
+.cash p{color:var(--ink-soft);min-width:0}
+
+/* packing */
+.pack{display:grid;gap:16px}
+@media(min-width:640px){.pack{grid-template-columns:1fr 1fr}}
+.pack-col{background:var(--cream);border-radius:22px;padding:24px 24px 20px;min-width:0}
+.pack-col h3{font-family:var(--font-display);font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.pack-col h3::before{content:"";width:14px;height:14px;border-radius:4px;background:var(--palm);transform:rotate(8deg)}
+.pack-col.bring h3::before{background:var(--sunset)}
+.pack-col ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.pack-col li{display:flex;align-items:center;gap:10px;font-weight:500}
+.pack-col li::before{content:"✓";font-family:var(--font-display);font-weight:700;color:var(--palm);width:1.2em}
+.pack-col.bring li::before{content:"→";color:var(--sunset)}
+.pack-col .note{margin-top:12px;font-size:.9rem;color:var(--ink-soft)}
+
+/* kampa card */
+.card{background:var(--cream);border-radius:24px;padding:28px 26px;border:3px dashed var(--wood);position:relative}
+.card .label{color:var(--palm)}
+
+/* callout / sunset band */
+.sunset{background:linear-gradient(160deg,var(--sunset),var(--coral));color:#fff}
+.sunset .label{color:var(--lemon)}
+.sunset .copy{color:#fff}
+.line-note{margin-top:30px;display:inline-block;font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.08em;color:#fff;transform:rotate(-1.5deg);background:linear-gradient(transparent 62%,rgba(255,210,77,.9) 62%);padding:0 .15em}
+
+/* location */
+.loc{display:grid;gap:18px;text-align:center}
+.loc .big{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,6vw,2.6rem);color:var(--sky);line-height:1.2}
+.loc p{color:var(--ink-soft)}
+
+footer{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:30px 44px;text-align:center;font-family:var(--font-display);font-weight:600;letter-spacing:.12em;font-size:.8rem;color:var(--ink-soft)}
+/* ---------- motion ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:rotate(-2deg) scale(.6);opacity:0}70%{transform:rotate(-2deg) scale(1.08);opacity:1}100%{transform:rotate(-2deg) scale(1);opacity:1}}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes bob{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(5deg) translateY(-5px)}}
+@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}}
+.hero img{animation:kenburns 7s ease-out both}
+.hero .eyebrow{animation:pop .7s cubic-bezier(.3,1.5,.5,1) .2s both}
+.hero h1 span{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(1){animation-delay:.45s}
+.hero h1 span:nth-child(2){animation-delay:.6s}
+.hero p{animation:rise .8s cubic-bezier(.2,.8,.2,1) .85s both}
+.wave{width:calc(100% + 80px);animation:drift 6s ease-in-out infinite alternate}
+.sticker{animation:bob 3.2s ease-in-out infinite}
+.photo{transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.photo:hover{transform:rotate(0) scale(1.02);box-shadow:0 26px 50px -22px rgba(60,30,0,.5)}
+.reveal.in{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.chips .chip{transition:transform .25s}
+.chips .chip:hover{transform:translateY(-3px) rotate(-1deg)}
+@media (prefers-reduced-motion: reduce){
+  .gallery img,.photo,.chip{transition:none}
+  .hero img,.hero .eyebrow,.hero h1 span,.hero p,.wave,.sticker,.reveal.in{animation:none}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="img/hero.jpg" alt="Match Baseの母屋と手作りの看板">
+  <div class="hero-inner">
+    <span class="eyebrow">Isumi, Chiba</span>
+    <h1><span>MATCH</span><span>BASE</span></h1>
+    <p>仲間と飯を食って、火を囲んで、朝は海に入る。そのための家。</p>
+  </div>
+</header>
+<div class="wave-wrap"><svg class="wave" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path fill="var(--sand)" d="M0,20 C240,46 480,0 720,18 C960,36 1200,8 1440,24 L1440,46 L0,46 Z"/></svg></div>
+
+<section class="band">
+  <div class="wrap copy reveal">
+    <div class="label">About</div>
+    <h2>Match Baseは、俺（Match）が<mark>仲間と過ごすために</mark>作った場所です。</h2>
+    <p>ウッドデッキで肉を焼いて、夜は焚き火を囲んで、朝は海に入る。そんな休日を、気の合う仲間と過ごしたくて作りました。</p>
+    <p>店でも民泊でもないので、料金表も予約サイトもありません。ここは俺の家で、来てくれる人はお客さんではなく、一緒に楽しむ仲間です。</p>
+    <div class="chips">
+      <span class="chip"><i></i>ウッドデッキでBBQ</span>
+      <span class="chip"><i></i>海まで車で10分</span>
+      <span class="chip"><i></i>夜は焚き火</span>
+      <span class="chip"><i></i>泊まれます</span>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wide pair">
+    <div class="photo reveal"><img src="img/deck-sunset.jpg" alt="朝日が差すウッドデッキとグリル"><span class="sticker sun">GOOD MORNING</span></div>
+    <div class="copy reveal">
+      <div class="label">How to enjoy</div>
+      <h2>来る人が持ち寄って、<mark>育っていく場所。</mark></h2>
+      <p>庭の焚き火台は、「焚き火がしたい」と言った仲間が自分で持ってきてくれたものです。俺一人では思いつかなかったことが、仲間のおかげでどんどん増えています。</p>
+      <p>「こんなことやりたい」があれば、気軽に教えてください。いいなと思ったら、一緒にやりましょう。</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wide pair flip">
+    <div class="photo tall reveal"><img src="img/sign.jpg" alt="竹林の前に立つMATCH BASEの看板"><span class="sticker leaf">HANDMADE</span></div>
+    <div class="copy reveal">
+      <p>ここは俺の家です。思ったようにならないこともあると思いますが、「そういう場所だよな」と笑って付き合ってもらえると嬉しいです。そのほうが、お互い気楽に楽しめます。</p>
+      <p>日程が重なることもあります。先に来ている人がいたら、それも縁です。一緒に飲んで、話して、新しい仲間になってください。ここで知り合った人同士の輪が広がっていくのが、俺にとって一番の楽しみです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wide">
+    <div class="label">Photos</div>
+    <div class="gallery">
+      <figure><img src="img/deck.jpg" alt="竹林に面したウッドデッキ"></figure>
+      <figure><img src="img/sign2.jpg" alt="看板越しに見る母屋"></figure>
+      <figure><img src="img/sign.jpg" alt="MATCH BASEの看板"></figure>
+      <figure><img src="img/deck-sunset.jpg" alt="朝のウッドデッキ"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wide reveal">
+    <div class="label">Neighborhood</div>
+    <h2>おすすめの店を、<mark>まずはふたつ。</mark></h2>
+    <p class="copy" style="margin-bottom:22px">ここに来たら、よく行く店です。他にもいい店があるはずなので、一緒に探していきましょう。</p>
+    <div class="spots">
+      <div class="spot sushi">
+        <span class="tag">Sushi</span>
+        <h3>ひかり寿司</h3>
+        <p>魚のうまい寿司屋です。海に近い場所にあることが、食べると分かります。</p>
+      </div>
+      <div class="spot snack">
+        <span class="q">?</span>
+        <span class="tag">Snack</span>
+        <h3>都心では絶対に出会えないスナック</h3>
+        <p>説明はしません。連れていくので、来てからのお楽しみです。</p>
+      </div>
+    </div>
+    <div class="cash">
+      <span class="bill">¥ CASH ONLY</span>
+      <p>このあたり、現金しか使えない店が多いです。スマホだけで来ると、寿司もスナックも見てるだけになります。お札を何枚か、財布に入れて来てください。</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wide reveal">
+    <div class="label">Packing</div>
+    <h2>持ってくるものは、<mark>だいたいこれだけ。</mark></h2>
+    <div class="pack">
+      <div class="pack-col bring">
+        <h3>持ってきてください</h3>
+        <ul>
+          <li>タオル</li>
+          <li>現金</li>
+        </ul>
+        <p class="note">タオルはベースに用意していないので、自分のを持ってきてください。</p>
+      </div>
+      <div class="pack-col">
+        <h3>あります</h3>
+        <ul>
+          <li>布団</li>
+          <li>ガスコンロとグリル</li>
+          <li>焚き火台</li>
+          <li>ウッドデッキとベンチ</li>
+        </ul>
+        <p class="note">布団はあるので、寝袋はいりません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="card copy reveal">
+      <div class="label">Kampa</div>
+      <h2>カンパは任意です。<br>なくても大丈夫です。</h2>
+      <p>いただいた分は、次にみんなで楽しむことに使います。新しい道具を買ったり、うまい肉を用意したり。カンパが増えると、できることが増えます。</p>
+    </div>
+  </div>
+</section>
+
+<section class="band sunset">
+  <div class="wrap copy reveal">
+    <div class="label">Come on in</div>
+    <h2>ここに来て楽しくなる人、周りも楽しくしてくれる人。</h2>
+    <p>若い人も大歓迎です。友達を連れてくるのもいいです。ここで過ごして、「あそこ楽しかったな」と思い出してもらえたら、それで十分です。</p>
+    <p>読んで「いいな」と思った人は、Matchに直接LINEをください。空いていれば、いつでも「いいよ」と言います。</p>
+    <span class="line-note">連絡は、MatchのLINEまで。</span>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap loc reveal">
+    <div class="label">Where</div>
+    <div class="big">いすみ市の、海に近いどこか。</div>
+    <p>詳しい場所は、LINEをくれた人に伝えます。</p>
+  </div>
+</section>
+
+<footer>MATCH BASE · ISUMI, CHIBA</footer>
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{rootMargin:'0px 0px -10% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
