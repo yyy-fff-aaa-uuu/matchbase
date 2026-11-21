@@ -104,6 +104,8 @@ h2 mark{background:linear-gradient(transparent 55%,var(--lemon) 55%);color:inher
 /* neighborhood */
 .spots{display:grid;gap:16px;margin-top:6px}
 @media(min-width:640px){.spots{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.spots{grid-template-columns:1fr 1fr 1fr}}
+.spot.shokudo .tag{background:var(--palm)}
 .spot{background:var(--cream);border-radius:22px;padding:26px 24px;position:relative;overflow:hidden;min-width:0}
 .spot .tag{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:999px;margin-bottom:12px;transform:rotate(-2deg)}
 .spot h3{font-size:1.25rem;font-weight:700;line-height:1.4;margin-bottom:8px}
@@ -233,13 +235,18 @@ footer{padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-
 <section class="band" style="padding-top:0">
   <div class="wide reveal">
     <div class="label">Neighborhood</div>
-    <h2>おすすめの店を、<mark>まずはふたつ。</mark></h2>
-    <p class="copy" style="margin-bottom:22px">ここに来たら、よく行く店です。他にもいい店があるはずなので、一緒に探していきましょう。</p>
+    <h2>ここに来たら、<mark>よく行く店。</mark></h2>
+    <p class="copy" style="margin-bottom:22px">他にもいい店があるはずなので、一緒に探していきましょう。</p>
     <div class="spots">
       <div class="spot sushi">
         <span class="tag">Sushi</span>
         <h3>ひかり寿司</h3>
         <p>魚のうまい寿司屋です。海に近い場所にあることが、食べると分かります。</p>
+      </div>
+      <div class="spot shokudo">
+        <span class="tag">Shokudo</span>
+        <h3>かさや食堂</h3>
+        <p>海鮮がうまくて、量がすごい食堂です。いすみなのに行列ができます。腹を空かせて行ってください。</p>
       </div>
       <div class="spot snack">
         <span class="q">?</span>
